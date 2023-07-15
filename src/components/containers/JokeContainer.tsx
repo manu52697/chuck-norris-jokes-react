@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useState } from 'react'
+import { Suspense, useEffect, useReducer, useState } from 'react'
 
 import JokeComponent from '../pure/JokeComponent'
 import LikeButton from '../pure/buttons/LikeButton'
@@ -9,6 +9,7 @@ import useJokesAPI from '../../hooks/useJokesAPI'
 
 import '../../styles/jokeContainer.scss'
 import ReloadButton from '../pure/buttons/ReloadButton'
+import { CircularProgress } from '@mui/material'
 
 type FeedbackAction = {
   type: 'liked' | 'disliked' | 'load'
@@ -97,24 +98,26 @@ export const JokeContainer = () => {
 
 
   return (
-      <div className='joke-container'>
-        <section>
-          <div className='stat-group'>
-            <StatsDisplay value={jokeStats.likeCount} caption='Liked jokes' />
-            <StatsDisplay value={jokeStats.dislikeCount} caption='Disliked jokes' />
-          </div>
-        </section>
-        <section className='joke-section'>
-          <div className='feedback-group'>
-          <JokeComponent className='joke-component' joke={joke}></JokeComponent>
+    <div className='joke-container'>
+      <section>
+        <div className='stat-group'>
+          <StatsDisplay value={jokeStats.likeCount} caption='Liked jokes' />
+          <StatsDisplay value={jokeStats.dislikeCount} caption='Disliked jokes' />
+        </div>
+      </section>
+      <section className='joke-section'>
+        <div className='feedback-group'>
+          <Suspense fallback={<CircularProgress/>}>
+            <JokeComponent className='joke-component' joke={joke}></JokeComponent>
+          </Suspense>
           <div className='feedback-buttons'>
             <LikeButton isActive={jokeStats.current === 1} action={handleLike}></LikeButton>
             <DislikeButton isActive={jokeStats.current === -1} action={handleDislike}></DislikeButton>
-          </div>
-          </div>
-          <ReloadButton isLoading={isLoading} doReload={handleLoadNew} />
-        </section>
-        
-      </div>
+            </div>
+        </div>
+        <ReloadButton isLoading={isLoading} doReload={handleLoadNew} />
+      </section>
+
+    </div>
   )
 }
