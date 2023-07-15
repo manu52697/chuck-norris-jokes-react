@@ -33,8 +33,10 @@
 .feedback-group {
     @include flex-container(row, );
     margin-bottom: 3rem;
+    min-height: 25vh;
 }
 
 .joke-component {
+    min-height: 7vh;
     width: 40vw;
 }

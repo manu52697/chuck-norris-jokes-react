@@ -4,7 +4,7 @@ import { Typography } from '@mui/material'
 
 const StatsDisplay = ({value, caption}: stat) => {
   return (
-    <div className='stat-display'>
+    <div>
       <Typography variant='h3'>{value}</Typography>
       <Typography variant='overline'>{caption}</Typography>
     </div>
