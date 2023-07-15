@@ -1,0 +1,40 @@
+@mixin flex-container($direction: column, $justify: center) {
+    display: flex;
+    flex-direction: $direction ;
+    align-items: center;
+    justify-content: $justify;
+}
+
+.joke-container {
+    padding:2rem;
+    @include flex-container(row, );
+    justify-content:space-between
+}
+
+.stat-group {
+    @include flex-container();
+    min-width: 12rem;
+    margin-right: 2rem;
+}
+
+.feedback-buttons {
+    min-width: 4rem;
+    padding: 0.4rem;
+    @include flex-container($justify: center );
+}
+
+.joke-section {
+    @include flex-container(column,);
+    // margin: 2rem;
+    max-width: 60;
+    min-width: 20vw;
+}
+
+.feedback-group {
+    @include flex-container(row, );
+    margin-bottom: 3rem;
+}
+
+.joke-component {
+    width: 40vw;
+}

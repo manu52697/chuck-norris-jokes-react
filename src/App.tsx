@@ -1,10 +1,10 @@
 import './App.css'
-import { JokeContainer } from './components/containers/JokeContainer'
+import { HomePage } from './pages/HomePage'
 
 function App() {
 
   return (
-    <JokeContainer></JokeContainer>
+    <HomePage/>
   )
 }
 
